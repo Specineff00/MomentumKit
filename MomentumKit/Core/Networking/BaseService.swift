@@ -8,24 +8,23 @@ protocol BaseServiceProtocol {
 actor LiveBaseService: BaseServiceProtocol {
   let baseURL: String
 
-  init(baseURL: String = "https://api.disneyapi.dev") {
+  init(baseURL: String = "http://localhost:8080") {
     self.baseURL = baseURL
   }
 
   func dispatch<R>(_ request: R) async throws -> R.ReturnType where R: Request {
     guard let urlRequest = request.asURLRequest(baseURL: baseURL) else {
-      throw DisneeError.badRequest
+      throw MomentumKitError.badRequest
     }
 
-    return try await withCheckedThrowingContinuation { continuation in
-      AF.request(urlRequest).responseDecodable(of: R.ReturnType.self) { response in
-        switch response.result {
-        case .success(let success):
-          continuation.resume(returning: success)
-        case .failure(let error):
-          continuation.resume(throwing: error)
-        }
-      }
+    let (data, _) = try await URLSession.shared.data(for: urlRequest)
+
+    do {
+      let decoder = JSONDecoder()
+      decoder.dateDecodingStrategy = .iso8601
+      return try decoder.decode(R.ReturnType.self, from: data)
+    } catch {
+      throw MomentumKitError.decodeError
     }
   }
 }
