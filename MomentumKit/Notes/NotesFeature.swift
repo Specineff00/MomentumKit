@@ -1,9 +1,7 @@
 import ComposableArchitecture
-import Foundation
-import SwiftData
 
 @Reducer
-struct NoteFeature {
+struct NotesFeature {
 
   @ObservableState
   struct State {
@@ -18,7 +16,6 @@ struct NoteFeature {
     case onSavingResponse(Result<Void, MomentumKitError>)
   }
 
-  @Dependency(\.persistentStorage) var persistentStorage
   @Dependency(\.momentumAPI) var momentumAPI
 
   var body: some ReducerOf<Self> {

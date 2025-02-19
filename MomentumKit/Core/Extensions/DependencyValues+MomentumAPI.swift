@@ -10,6 +10,11 @@ extension DependencyValues {
 
 private enum MomentumAPIKey: DependencyKey {
   static let liveValue: any MomentumAPI = LiveMomentumAPI()
-  static let testValue: any MomentumAPI = MockMomentumAPI { [.mock] }
+  static let testValue: any MomentumAPI = MockMomentumAPI {
+    [.mock()]
+  } quotes: {
+    [.mock()]
+  }
+
 }
 

@@ -4,13 +4,13 @@ import SwiftUI
 @main
 struct MomentumKitApp: App {
   @MainActor
-  static let store = Store(initialState: NoteFeature.State()) {
-    NoteFeature()
+  static let store = Store(initialState: AppFeature.State()) {
+    AppFeature()
   }
 
   var body: some Scene {
     WindowGroup {
-      NotesView(store: Self.store)
+      HomeView(store: Self.store)
     }
   }
 }
