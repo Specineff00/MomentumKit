@@ -11,7 +11,7 @@ struct NotesList: View {
             }
         }
         .onAppear {
-//            store.send(.onAppear) //TODO: fix this to not call live in previews
+            store.send(.onAppear) // TODO: fix this to not call live in previews
         }
     }
 }

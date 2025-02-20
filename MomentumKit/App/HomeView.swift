@@ -3,7 +3,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var text = ""
-    let store: StoreOf<AppFeature>
+    @State var store: StoreOf<AppFeature>
 
     var body: some View {
         VStack {
@@ -18,21 +18,31 @@ struct HomeView: View {
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(lineWidth: 1)
                 }
+            Button("Create") {
+                store.send(.createNote)
+            }
+            .padding()
             Button("Submit") {
                 store.send(.notes(.saveNote(.generateRandomNote())))
             }
+            .padding()
             NotesList(store: store.scope(state: \.notes, action: \.notes))
             QuotesList(store: store.scope(state: \.quotes, action: \.quotes))
         }
         .padding()
+        .sheet(item: $store.scope(
+            state: \.destination?.createNote,
+            action: \.destination.createNote
+        )) { createNoteStore in
+            CreateNoteView(store: createNoteStore)
+        }
     }
 }
 
 #Preview {
     HomeView(store: .init(initialState: AppFeature.State()) {
         AppFeature()
-    }
-    )
+    })
 }
 
 /*
@@ -47,3 +57,13 @@ struct HomeView: View {
  - Quotes from quote API
 
  */
+
+struct CreateNoteView: View {
+    @State var store: StoreOf<CreateNoteFeature>
+    var body: some View {
+        Text("Hello, World!")
+        Button("Save note") {
+            store.send(.saveNote)
+        }
+    }
+}

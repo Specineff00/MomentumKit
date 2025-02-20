@@ -7,6 +7,20 @@ struct Note: Codable, Identifiable, Equatable {
     let category: String?
     let dateCreated: Date
     let priority: Int
+
+    init(
+        id: UUID? = .init(),
+        text: String,
+        category: String?,
+        dateCreated: Date = .now,
+        priority: Int
+    ) {
+        self.id = id
+        self.text = text
+        self.category = category
+        self.dateCreated = dateCreated
+        self.priority = priority
+    }
 }
 
 extension Note {
