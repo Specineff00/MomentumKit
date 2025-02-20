@@ -2,38 +2,37 @@ import ComposableArchitecture
 import SwiftUI
 
 struct HomeView: View {
-  @State private var text = ""
-  let store: StoreOf<AppFeature>
+    @State private var text = ""
+    let store: StoreOf<AppFeature>
 
-  var body: some View {
-    VStack {
-      Image(systemName: "globe")
-        .imageScale(.large)
-        .foregroundStyle(.tint)
-      Text("Hello, world!")
-      TextField("YO", text: $text)
-        .shadow(radius: 3)
-        .padding()
-        .overlay {
-          RoundedRectangle(cornerRadius: 8)
-            .stroke(lineWidth: 1)
+    var body: some View {
+        VStack {
+            Image(systemName: "globe")
+                .imageScale(.large)
+                .foregroundStyle(.tint)
+            Text("Hello, world!")
+            TextField("YO", text: $text)
+                .shadow(radius: 3)
+                .padding()
+                .overlay {
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(lineWidth: 1)
+                }
+            Button("Submit") {
+                store.send(.notes(.saveNote(.generateRandomNote())))
+            }
+            NotesList(store: store.scope(state: \.notes, action: \.notes))
+            QuotesList(store: store.scope(state: \.quotes, action: \.quotes))
         }
-      Button("Submit") {
-        store.send(.notes(.saveNote(.generateRandomNote())))
-      }
-      NotesList(store: store.scope(state: \.notes, action: \.notes))
-      QuotesList(store: store.scope(state: \.quotes, action: \.quotes))
+        .padding()
     }
-    .padding()
-
-  }
 }
 
 #Preview {
-  HomeView(store: .init(initialState: AppFeature.State()) {
-      AppFeature()
+    HomeView(store: .init(initialState: AppFeature.State()) {
+        AppFeature()
     }
-  )
+    )
 }
 
 /*

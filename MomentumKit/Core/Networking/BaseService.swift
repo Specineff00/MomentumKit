@@ -1,47 +1,47 @@
 import Foundation
 
 protocol BaseServiceProtocol {
-  var baseURL: String { get }
-  func dispatch<R: Request>(_ request: R) async throws -> R.ReturnType
+    var baseURL: String { get }
+    func dispatch<R: Request>(_ request: R) async throws -> R.ReturnType
 }
 
 actor LiveBaseService: BaseServiceProtocol {
-  let baseURL: String
+    let baseURL: String
 
-  init(baseURL: String = "http://localhost:8080") {
-    self.baseURL = baseURL
-  }
-
-  func dispatch<R>(_ request: R) async throws -> R.ReturnType where R: Request {
-    guard let urlRequest = request.asURLRequest(baseURL: baseURL) else {
-      throw MomentumKitError.badRequest
+    init(baseURL: String = "http://localhost:8080") {
+        self.baseURL = baseURL
     }
 
-    let (data, _) = try await URLSession.shared.data(for: urlRequest)
+    func dispatch<R>(_ request: R) async throws -> R.ReturnType where R: Request {
+        guard let urlRequest = request.asURLRequest(baseURL: baseURL) else {
+            throw MomentumKitError.badRequest
+        }
 
-    do {
-      let decoder = JSONDecoder()
-      decoder.dateDecodingStrategy = .iso8601
-      return try decoder.decode(R.ReturnType.self, from: data)
-    } catch {
-      throw MomentumKitError.decodeError
+        let (data, _) = try await URLSession.shared.data(for: urlRequest)
+
+        do {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            return try decoder.decode(R.ReturnType.self, from: data)
+        } catch {
+            throw MomentumKitError.decodeError
+        }
     }
-  }
 }
 
 struct MockBaseService: BaseServiceProtocol {
-  var baseURL: String = "baseurl.com"
-  var dispatchHandler: (Any) throws -> Any
+    var baseURL: String = "baseurl.com"
+    var dispatchHandler: (Any) throws -> Any
 
-  init(dispatchHandler: @escaping (Any) throws -> Any) {
-    self.dispatchHandler = dispatchHandler
-  }
-
-  func dispatch<R>(_ request: R) async throws -> R.ReturnType where R: Request {
-    let result = try dispatchHandler(request)
-    guard let returnValue = result as? R.ReturnType else {
-        throw NSError(domain: "MockAPIService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Type mismatch"])
+    init(dispatchHandler: @escaping (Any) throws -> Any) {
+        self.dispatchHandler = dispatchHandler
     }
-    return returnValue
-  }
+
+    func dispatch<R>(_ request: R) async throws -> R.ReturnType where R: Request {
+        let result = try dispatchHandler(request)
+        guard let returnValue = result as? R.ReturnType else {
+            throw NSError(domain: "MockAPIService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Type mismatch"])
+        }
+        return returnValue
+    }
 }
