@@ -21,11 +21,12 @@ struct HomeView: View {
             Button("Create") {
                 store.send(.createNote)
             }
+            .buttonStyle(.momentumSecondary)
             .padding()
             Button("Submit") {
                 store.send(.notes(.saveNote(.generateRandomNote())))
             }
-            .padding()
+            .buttonStyle(.momentumPrimary)
             NotesList(store: store.scope(state: \.notes, action: \.notes))
             QuotesList(store: store.scope(state: \.quotes, action: \.quotes))
         }
@@ -36,6 +37,7 @@ struct HomeView: View {
         )) { createNoteStore in
             CreateNoteView(store: createNoteStore)
         }
+        .background(.background)
     }
 }
 

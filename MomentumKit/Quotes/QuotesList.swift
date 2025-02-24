@@ -7,6 +7,7 @@ struct QuotesList: View {
     var body: some View {
         List(store.quotes) { note in
             Text(note.text)
+                .appFont(.body)
         }
         .onAppear {
             store.send(.loadQuotes)

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		B78BB2482D5145AE00D2A997 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B78BB2472D5145AE00D2A997 /* ComposableArchitecture */; };
 		B7AE1CF12D6644BC006B5DCE /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = B7AE1CF02D6644BC006B5DCE /* WaterfallGrid */; };
+		B7AE1CF82D68CDAF006B5DCE /* Aspekta-550.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7AE1CF62D68CDAF006B5DCE /* Aspekta-550.ttf */; };
+		B7AE1CF92D68CDAF006B5DCE /* Aspekta-700.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7AE1CF72D68CDAF006B5DCE /* Aspekta-700.ttf */; };
+		B7AE1CFA2D68CDAF006B5DCE /* Aspekta-400.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7AE1CF52D68CDAF006B5DCE /* Aspekta-400.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,11 +35,27 @@
 		B78BB2192D51457900D2A997 /* MomentumKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MomentumKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B78BB2292D51457B00D2A997 /* MomentumKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomentumKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B78BB2332D51457B00D2A997 /* MomentumKitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomentumKitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7AE1CF52D68CDAF006B5DCE /* Aspekta-400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Aspekta-400.ttf"; sourceTree = "<group>"; };
+		B7AE1CF62D68CDAF006B5DCE /* Aspekta-550.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Aspekta-550.ttf"; sourceTree = "<group>"; };
+		B7AE1CF72D68CDAF006B5DCE /* Aspekta-700.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Aspekta-700.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		B7AE1CF42D68CBD9006B5DCE /* Exceptions for "MomentumKit" folder in "MomentumKit" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = B78BB2182D51457900D2A997 /* MomentumKit */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		B78BB21B2D51457900D2A997 /* MomentumKit */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				B7AE1CF42D68CBD9006B5DCE /* Exceptions for "MomentumKit" folder in "MomentumKit" target */,
+			);
 			path = MomentumKit;
 			sourceTree = "<group>";
 		};
@@ -80,6 +99,9 @@
 				B78BB21B2D51457900D2A997 /* MomentumKit */,
 				B78BB22C2D51457B00D2A997 /* MomentumKitTests */,
 				B78BB21A2D51457900D2A997 /* Products */,
+				B7AE1CF52D68CDAF006B5DCE /* Aspekta-400.ttf */,
+				B7AE1CF62D68CDAF006B5DCE /* Aspekta-550.ttf */,
+				B7AE1CF72D68CDAF006B5DCE /* Aspekta-700.ttf */,
 			);
 			sourceTree = "<group>";
 		};
@@ -216,6 +238,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7AE1CF82D68CDAF006B5DCE /* Aspekta-550.ttf in Resources */,
+				B7AE1CF92D68CDAF006B5DCE /* Aspekta-700.ttf in Resources */,
+				B7AE1CFA2D68CDAF006B5DCE /* Aspekta-400.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +428,7 @@
 				DEVELOPMENT_TEAM = L85D626Q4H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MomentumKit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -432,6 +458,7 @@
 				DEVELOPMENT_TEAM = L85D626Q4H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MomentumKit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
